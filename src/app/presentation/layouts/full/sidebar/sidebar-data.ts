@@ -10,6 +10,14 @@ export const navItems: NavItem[] = [
     route: '/dashboard',
   },
   {
+    navCap: 'Doctrine',
+  },
+  {
+    displayName: 'Dap',
+    iconName: 'layout-dashboard',
+    route: '/dap',
+  },
+  {
     navCap: 'Ui Components',
   },
   {
