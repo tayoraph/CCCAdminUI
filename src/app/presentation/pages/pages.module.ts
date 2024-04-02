@@ -8,6 +8,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { MaterialModule } from 'src/app/material.module';
+// import { DoctrineModule } from './Doctrine/doctrine.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { MaterialModule } from 'src/app/material.module';
     NgApexchartsModule,
     RouterModule.forChild(PagesRoutes),
     TablerIconsModule.pick(TablerIcons),
+    
   ],
   exports: [TablerIconsModule],
 })

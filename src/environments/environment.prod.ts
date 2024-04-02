@@ -20,6 +20,7 @@ export const environment = {
 authentication:{
   login:"auth/login",
   register:""
-}
+},
+excemptedUrlArray:[""]
 
 };

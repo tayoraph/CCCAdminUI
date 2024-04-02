@@ -13,7 +13,7 @@ export class DataStoreService {
   items$ = this.store.select(data => data);
 
   item$ = (dataId: number) =>
-    this.store.select(data => data.find(data => dataStore.dataId === dataId) as IDataStore);
+    this.store.select(data => data.find(data => data.dataId === dataId) as IDataStore);
 
   initialize(initialItems: IDataStore[]): void {
     this.store.update(_ => initialItems);
