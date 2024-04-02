@@ -18,7 +18,8 @@ export class AppSideLoginComponent {
   public errorMessage = '';
   public validationMessages;
   constructor(public formValidation :FormValidation,public store: DataStoreService,
-    public router : Router, private dataStore: DataStoreService,public userLoginUseCase: UserLoginUseCase, public alert: ToastrService) {
+    public router : Router, private dataStore: DataStoreService,
+    public userLoginUseCase: UserLoginUseCase, public alert: ToastrService) {
     this.validationMessages = validationMessages;
     this.loginForm = this.formValidation.Login();
    
@@ -46,7 +47,7 @@ export class AppSideLoginComponent {
       email: value.email,
       password: value.password
     }
-     console.log(authData)
+    //  console.log(authData)
      let user = this
      this.userLoginUseCase.execute(authData)
      .subscribe({
@@ -54,6 +55,8 @@ export class AppSideLoginComponent {
         let data : IDataStore ={ dataId: 4, dataName : "authToken",value : value }
         user.store.add(data)// pass token to store
         user.alert.success('login successful');
+        user.loginForm.reset();
+        user.router.navigate(['app/dashboard'])
       },
       error(err) {
         user.alert.error('login failed');
