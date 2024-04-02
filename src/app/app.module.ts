@@ -25,6 +25,7 @@ import { CoreModule } from './core/core.module';
 import { PersistenceModule } from './infrastructure/persistence/persistence-module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { LoaderModule } from './infrastructure/Utils/Loader/loader.module';
+import { DoctrineModule } from './presentation/pages/Doctrine/doctrine.module';
 
 //Import Layouts
 
@@ -64,7 +65,8 @@ import { LoaderModule } from './infrastructure/Utils/Loader/loader.module';
       positionClass: 'toast-top-left',
     }),
     CoreModule,
-    LoaderModule
+    LoaderModule,
+    DoctrineModule
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

@@ -12,23 +12,4 @@ export const authGuard: CanActivateFn = (route, state) => {
    });
 };
 
-// import { Injectable } from '@angular/core';
-// import { CanActivate, Router } from '@angular/router';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class authGuard implements CanActivate {
-
-//   constructor(private router: Router, private storeService : StoreService) {}
-
-//   canActivate(): Promise<boolean> {
-//   return this.storeService.isUSerAuthenticated()
-//     .then((resp:boolean)=>{
-//           return resp
-//          });
-//   }
-// }
-
-
 
