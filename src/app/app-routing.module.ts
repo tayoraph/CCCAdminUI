@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './presentation/layouts/blank/blank.component';
 import { FullComponent } from './presentation/layouts/full/full.component';
+import { authGuard } from './infrastructure/Utils/Guard/AuthGuard/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'dashboard',
+    path: 'app',
     component: FullComponent,
     children: [
       {
@@ -35,6 +36,7 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () =>
           import('./presentation/pages/pages.module').then((m) => m.PagesModule),
+          canActivate: [authGuard]
       },
       {
         path: 'ui-components',
@@ -47,6 +49,13 @@ const routes: Routes = [
         path: 'extra',
         loadChildren: () =>
           import('./presentation/pages/extra/extra.module').then((m) => m.ExtraModule),
+      },
+      {
+        path: 'dap',
+        loadChildren: () =>
+          import('./presentation/pages/Doctrine/doctrine.module').then(
+            (m) => m.DoctrineModule
+          ),
       },
     ],
   },

@@ -1,0 +1,44 @@
+<!-- src/app/pages/player/player.component.html -->
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Basic Biblical Doctrine </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+        
+    
+    <div class="content">
+        <div class="iconDiv">
+        <i-tabler name="music" class="icon icon-tabler icons-tabler-outline icon-tabler-music iconHeader"></i-tabler>
+    </div>
+
+      <div class="col-lg-12">
+        <mat-list>
+          <mat-list-item *ngFor="let file of files; let i = index">
+            <div class="row">
+              <div class="col-lg-5">
+            <!-- <mat-icon matListItemIcon>  
+              <i-tabler name="headset" class="icon icon-tabler icons-tabler-outline icon-tabler-music "></i-tabler>
+          </mat-icon> -->
+          <span matListItemTitle class="f-s-16 f-w-600">{{ file.name }}</span>
+          <span matListItemLine class="mat-body-1">by {{ file.artist }}</span
+          >
+          </div>
+          <div class="col-lg-7">
+          <audio controls>
+            <source src="{{ file.url }}" />
+          </audio>
+          </div>
+          </div>
+          </mat-list-item>
+          
+        </mat-list>
+        
+         
+      </div>
+
+
+
+
+</div>
+</mat-card-content>
+</mat-card>

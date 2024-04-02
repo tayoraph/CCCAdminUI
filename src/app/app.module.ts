@@ -20,10 +20,12 @@ import { HeaderComponent } from './presentation/layouts/full/header/header.compo
 import { BrandingComponent } from './presentation/layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './presentation/layouts/full/sidebar/nav-item/nav-item.component';
 import { SidebarComponent } from './presentation/layouts/full/sidebar/sidebar.component';
-import { UtilsModule } from './infrastructure/Utils/utils-module';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreModule } from './core/core.module';
 import { PersistenceModule } from './infrastructure/persistence/persistence-module';
+import { InfrastructureModule } from './infrastructure/infrastructure.module';
+import { LoaderModule } from './infrastructure/Utils/Loader/loader.module';
+import { DoctrineModule } from './presentation/pages/Doctrine/doctrine.module';
 
 //Import Layouts
 
@@ -49,7 +51,7 @@ import { PersistenceModule } from './infrastructure/persistence/persistence-modu
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
     NgScrollbarModule,
-    UtilsModule,
+    InfrastructureModule,
     ToastrModule.forRoot({
       timeOut: 15000, // 15 seconds
       closeButton: true,
@@ -63,7 +65,8 @@ import { PersistenceModule } from './infrastructure/persistence/persistence-modu
       positionClass: 'toast-top-left',
     }),
     CoreModule,
-    PersistenceModule
+    LoaderModule,
+    DoctrineModule
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
