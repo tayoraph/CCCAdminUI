@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "testApp": {
+    "CCCAdminUI": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -22,7 +22,7 @@
               "apexcharts",
               "bezier-easing"
             ],
-            "outputPath": "docs",
+            "outputPath": "docsCCCAdminUI",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "testApp:build:production"
+              "browserTarget": "CCCAdminUI:build:production"
             },
             "development": {
-              "browserTarget": "testApp:build:development"
+              "browserTarget": "CCCAdminUI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "testApp:build"
+            "browserTarget": "CCCAdminUI:build"
           }
         },
         "test": {
