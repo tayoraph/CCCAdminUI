@@ -10,18 +10,18 @@ export const environment = {
   getTodaysBibleLessons : "biblelessons/today",
   getListOfLesson : "biblelessons/getListOfLesson",
   searchBibleLesson : "biblelessons/search",
- getBibleVerses : "biblebooks/search",
- getAllBibleBooks : "biblebooks/getAllBibleBooksByBibleVersion/",
- getAllBibleBooksAndTotalChapterPerBook:  "biblebooks/getAllBibleBooksAndTotalChapterPerBook/",
- getUnitsundaySchoolLessonDataForSelectedMonth:  "SSC/unit",
- getHymnsByhymnNo:"hymns/getHymnsByhymnNo",
- searchHymn: "hymns/search",
- getAppDetails:"getAppVersion",
-authentication:{
-  login:"auth/login",
-  register:""
-},
-excemptedUrlArray:["dap/getAllDap","dap/dapAudio"],
-getAllDap:"dap/getAllDap",
+  getBibleVerses : "biblebooks/search",
+  getAllBibleBooks : "biblebooks/getAllBibleBooksByBibleVersion/",
+  getAllBibleBooksAndTotalChapterPerBook:  "biblebooks/getAllBibleBooksAndTotalChapterPerBook/",
+  getUnitsundaySchoolLessonDataForSelectedMonth:  "SSC/unit",
+  getHymnsByhymnNo:"hymns/getHymnsByhymnNo",
+  searchHymn: "hymns/search",
+  getAppDetails:"getAppVersion",
+  authentication:{
+    login:"auth/login",
+    register:""
+  },
+  excemptedUrlArray:["dap/getAllDap","dap/dapAudio"],
+  getAllDap:"dap/getAllDap",
 
 };
