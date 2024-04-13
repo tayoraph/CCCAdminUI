@@ -15,6 +15,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MaterialModule } from "src/app/material.module";
 import { TablerIconsModule } from "angular-tabler-icons";
 import * as TablerIcons from 'angular-tabler-icons/icons';
+import { DapMenuComponent } from "./dap-menu/dap-menu.component";
 
 const MatModules = [
     MatButtonModule,
@@ -33,7 +34,7 @@ const MatModules = [
         
     TablerIconsModule.pick(TablerIcons),
     ],
-    declarations:[DapComponent],
+    declarations:[DapComponent,DapMenuComponent],
     providers:[DapService],
     exports:[
         // MatModules,

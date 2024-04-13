@@ -15,7 +15,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Dap',
     iconName: 'layout-dashboard',
-    route: 'app/dap',
+    route: 'app/dap/dapAudio',
   },
   // {
   //   navCap: 'Ui Components',
@@ -71,4 +71,15 @@ export const navItems: NavItem[] = [
   //   iconName: 'aperture',
   //   route: 'app/extra/sample-page',
   // },
+];
+
+export const navItemsOpen: NavItem[] = [
+  {
+    navCap: 'Doctrine',
+  },
+  {
+    displayName: 'Dap',
+    iconName: 'layout-dashboard',
+    route: 'app/dap/dapAudio',
+  }
 ];

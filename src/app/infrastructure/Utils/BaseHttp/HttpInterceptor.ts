@@ -23,7 +23,7 @@ export class EncryptionInterceptor implements HttpInterceptor {
   constructor(private enc:EncryptionService) {
   }
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  if (!environment.excemptedUrlArray.includes(httpRequest.url)) { //exempting some endpointfrom encryption
+    if (this.isValidRequestForInterceptor(httpRequest.url)) { //exempting some endpointfrom encryption
     httpRequest = httpRequest.clone({
       //encrypting request going to server
       body: { param: this.enc.envEnc(JSON.stringify(httpRequest.body)) },
@@ -45,5 +45,20 @@ export class EncryptionInterceptor implements HttpInterceptor {
     return next.handle(httpRequest);
   }
   }
+
+  private isValidRequestForInterceptor(requestUrl: string): boolean {
+    let positionIndicator: string = 'ccc/';
+    let position = requestUrl.indexOf(positionIndicator);
+    if (position > 0) {
+      let destination: string = requestUrl.substr(position + positionIndicator.length);
+      for (let address of environment.excemptedUrlArray) {
+        if (new RegExp(address).test(destination)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
 }
 

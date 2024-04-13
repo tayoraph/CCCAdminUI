@@ -31,13 +31,13 @@ export class AppSideLoginComponent {
    
     this.dataStore.items$.subscribe({
       next:(res=>{
-        console.log(res)
+       // console.log(res)
       })
     });
     this.dataStore.item$(1).
     subscribe({
       next:(res=>{
-        console.log(res)
+      //  console.log(res)
       })
     });
   }
@@ -60,7 +60,7 @@ export class AppSideLoginComponent {
       },
       error(err) {
         user.alert.error('login failed');
-        console.log(err)
+       // console.log(err)
 
       },
      })

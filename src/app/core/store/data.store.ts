@@ -25,7 +25,6 @@ export class DataStoreService {
 
   add(item: IDataStore): void {
     this.store.update(state =>{ 
-      console.log(state)
       return [...state, item]})
   }
 }

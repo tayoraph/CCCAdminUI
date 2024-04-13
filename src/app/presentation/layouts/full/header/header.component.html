@@ -1,4 +1,6 @@
 <mat-toolbar class="topbar">
+
+  <ng-container *ngIf="showSideMenu">
   <!-- Mobile Menu -->
   <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
     <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
@@ -69,4 +71,18 @@
       >
     </div>
   </mat-menu>
+</ng-container>
+
+<ng-container *ngIf="!showSideMenu">
+  <button
+  mat-icon-button
+  aria-label="Notifications" class="m-l-10"
+>
+  <img
+    src="/assets/images/profile/user-1.jpg"
+    class="rounded-circle object-cover"
+    width="35"
+  />
+</button>
+</ng-container>
 </mat-toolbar>

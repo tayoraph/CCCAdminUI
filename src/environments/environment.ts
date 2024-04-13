@@ -26,7 +26,9 @@ export const environment = {
   login:"auth/login",
   register:""
 },
-excemptedUrlArray:[""]
+excemptedUrlArray:["dap/getAllDap","dap/dapAudio"],
+getAllDap:"dap/getAllDap",
+
 };
 
 /*

@@ -5,6 +5,7 @@
       <app-nav-item *ngFor="let item of navItems" [item]="item"> </app-nav-item>
     </mat-nav-list>
   </ng-scrollbar>
+  <ng-container *ngIf="showSideMenu">
   <div class="p-24">
     <a
       mat-flat-button
@@ -15,4 +16,5 @@
       Logout
     </a>
   </div>
+</ng-container>
 </div>
