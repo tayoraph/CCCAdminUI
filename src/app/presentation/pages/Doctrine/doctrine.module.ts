@@ -16,14 +16,15 @@ import { MaterialModule } from "src/app/material.module";
 import { TablerIconsModule } from "angular-tabler-icons";
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { DapMenuComponent } from "./dap-menu/dap-menu.component";
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 const MatModules = [
     MatButtonModule,
     MatListModule,
     // MatSliderModule,
     MatIconModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
 ];
 
 @NgModule({
