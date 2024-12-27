@@ -10,8 +10,11 @@
         <div class=" col-lg-6">
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>Month</mat-label>
-                <mat-select [(ngModel)]="currentMonth" name="currentMonth">
-                    <mat-option *ngFor="let item of weekDayList" [value]="item">{{item}}</mat-option>
+                <mat-select [(ngModel)]="currentMonth" >
+                   <ng-container *ngIf="currentMonth != ''">
+                       <mat-option value="{{currentMonth}}">{{currentMonth}}</mat-option>
+                   </ng-container>
+                    <mat-option *ngFor="let currentMonth of weekDayList" [value]="currentMonth">{{currentMonth}}</mat-option>
                   </mat-select>
             </mat-form-field>
         </div>
@@ -19,6 +22,9 @@
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>Day'Date</mat-label>
                 <mat-select  [(ngModel)]=" day" name="day">
+                   <ng-container *ngIf="day != ''">
+                    <mat-option value="{{day}}">{{day}}</mat-option>
+                    </ng-container>
                     <mat-option *ngFor="let item of currentDayDate" [value]="item">{{item}}</mat-option>
                   </mat-select>
             </mat-form-field>
@@ -35,6 +41,9 @@
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>Days of the Week</mat-label>
                 <mat-select  [(ngModel)]=" dayOfTheWeek" name="dayOfTheWeek">
+                    <ng-container *ngIf="dayOfTheWeek != ''">
+                        <mat-option value="{{dayOfTheWeek}}">{{dayOfTheWeek}}</mat-option>
+                    </ng-container>
                     <mat-option *ngFor="let item of dayOfTheWeekList" [value]="item">{{item}}</mat-option>
                   </mat-select>
             </mat-form-field>
@@ -47,6 +56,9 @@
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>Day Type</mat-label>
                 <mat-select [(ngModel)]="typeOfTheDay"  name="firstLesson">
+                    <ng-container *ngIf="typeOfTheDay != ''">
+                        <mat-option value="{{typeOfTheDay}}">{{typeOfTheDay}}</mat-option>
+                    </ng-container>
                     <mat-option *ngFor="let item of typeOfDay" [value]="item">{{item}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -67,6 +79,9 @@
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>First Lesson Book</mat-label>
                 <mat-select [(ngModel)]=" fBook" name="firstLesson.fBook">
+                    <ng-container *ngIf="fBook != ''">
+                        <mat-option value="{{fBook}}">{{fBook}}</mat-option>
+                    </ng-container>
                     <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -111,6 +126,9 @@
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>Second Lesson Book</mat-label>
                 <mat-select [(ngModel)]=" sBook" name="Second.sBook">
+                    <ng-container *ngIf="sBook != ''">
+                        <mat-option value="{{sBook}}">{{sBook}}</mat-option>
+                    </ng-container>
                     <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -150,6 +168,9 @@
             <mat-form-field appearance="outline" class="w-100" color="primary" >
                 <mat-label>Evening Lesson Book</mat-label>
                 <mat-select [(ngModel)]=" eBook" name="eBook">
+                    <ng-container *ngIf="eBook != ''">
+                        <mat-option value="{{eBook}}">{{eBook}}</mat-option>
+                    </ng-container>
                     <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -193,6 +214,9 @@
              <mat-form-field appearance="outline" class="w-100" color="primary" >
                  <mat-label>Only Lesson Book</mat-label>
                  <mat-select [(ngModel)]=" oBook" name="oBook">
+                    <ng-container *ngIf="oBook != ''">
+                        <mat-option value="{{oBook}}">{{oBook}}</mat-option>
+                    </ng-container>
                      <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
                  </mat-select>
              </mat-form-field>
@@ -237,9 +261,13 @@
         </div>
     </div>
 
-    <button  mat-flat-button  color="primary" [matTooltip]="'Add '"   (click)="addNewLesson()"  aria-label="">
+    <button *ngIf="!isUpdateRequest" mat-flat-button  color="primary" [matTooltip]="'Add '"   (click)="addNewLesson()"  aria-label="">
        Submit
     </button>
+
+    <button *ngIf="isUpdateRequest" mat-flat-button  color="primary" [matTooltip]="'Add '"   (click)="updateLesson()"  aria-label="">
+        Update
+     </button>
     </mat-card-content>
   </mat-card>
   

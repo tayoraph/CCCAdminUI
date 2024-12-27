@@ -25,6 +25,8 @@ export const environment = {
   getAllDap:"dap/getAllDap",
   createBibleLesson:"biblelessons/create",
   getBibleLessonsList:'biblelessons/getBibleLessonsList',
-  deleteLesson:'biblelessons/'
+  deleteLesson:'biblelessons/',
+  updateBibleLesson:"biblelessons/",
+
 
 };

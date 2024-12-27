@@ -5,85 +5,65 @@
           <mat-card-content class="p-24">
             <mat-card-title>Bible Lesson List</mat-card-title>
             <div class="table-responsive m-t-16">
+          
+                        <mat-form-field appearance="outline" class="w-100" color="primary"  >
+                            <mat-label>Search lesson by year, month , day or day of the week</mat-label>
+                            <input matInput  [(ngModel)]=" searchItem" name="searchItem" type="text" (ngModelChange)="searchList(searchItem)"/>
+                        </mat-form-field>
+                    
+
               <table mat-table [dataSource]="dataSource" class="w-100 table-borderless">
-                <!-- Day Column -->
-                <ng-container matColumnDef="Day">
-                  <th
-                    mat-header-cell
-                    *matHeaderCellDef
-                    class="f-w-600 mat-subtitle-1 f-s-14"
-                  >
-                  Day
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    <div class="d-flex align-items-center">
-                      <!-- <img
-                        [src]="element.imagePath"
-                        alt="users"
-                        width="50"
-                        class="rounded-circle"
-                      /> -->
-                      <div class="m-l-16">
-                        <h6 class="mat-subtitle-1 f-s-14 f-w-700">
-                          {{ element.dayOfTheWeek }},  {{ element.day }} {{ element.month }}  {{ element.year }}
-                        </h6>
-                        <span class="mat-body-1 f-s-14">
-                          {{ element.typeOfTheDay }}
-                        </span>
-                      </div>
-                    </div>
-                  </td>
+              
+                 <!-- Id Column -->
+                 <ng-container matColumnDef="S/N">
+                    <th mat-header-cell *matHeaderCellDef  class="f-w-600 mat-subtitle-1 f-s-14 tableHeader"> S/N </th>
+                    <td mat-cell *matCellDef="let element; let i = index;"> {{ i + 1 }} </td>
                 </ng-container>
     
+ <!-- Day Column -->
+                <ng-container matColumnDef="Day">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      class="f-w-600 mat-subtitle-1 f-s-14 tableHeader"
+                    >
+                    Day
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <div class="d-flex align-items-center">
+                        <div class="m-l-16">
+                          <h6 class="mat-subtitle-1 f-s-14 f-w-700">
+                            {{ element.dayOfTheWeek }},  {{ element.day }} {{ element.month }}  {{ element.year }}
+                          </h6>
+                          <span class="mat-body-1 f-s-14">
+                            {{ element.typeOfTheDay }}
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                  </ng-container>
+      
                 <!-- First Lesson Column -->
-                <ng-container matColumnDef="FirstLesson">
+                <ng-container matColumnDef="Lesson">
                   <th
                     mat-header-cell
                     *matHeaderCellDef
-                    class="f-w-600 mat-subtitle-1 f-s-14"
+                    class="f-w-600 mat-subtitle-1 f-s-14 tableHeader"
                   >
-                First Lesson
+                 Lessons
                   </th>
                   <td mat-cell *matCellDef="let element" class="mat-body-1 f-w-500">
                   <span *ngIf="element.fBook !== ''">
-                      {{ element.fBook }}   {{ element.fChapter }}  : {{ element.fStartFrom }} -  {{ element.fEndAt }}
+                    <span class="lessonHeader"> 1st Lesson => </span>{{ element.fBook }}   {{ element.fChapter }}  : {{ element.fStartFrom }} -  {{ element.fEndAt }}
                   </span> 
-                  </td>
-                </ng-container>
-
-                  <!-- Second Lesson Column -->
-                <ng-container matColumnDef="SecondLesson">
-                  <th
-                    mat-header-cell
-                    *matHeaderCellDef
-                    class="f-w-600 mat-subtitle-1 f-s-14"
-                  >
-                 Second Lesson
-                  </th>
-                  <td mat-cell *matCellDef="let element" class="mat-body-1 f-w-500 ">
-                    <span *ngIf="element.sBook !== ''">
-                        {{ element.sBook }}   {{ element.sChapter }}  : {{ element.sStartFrom }} -  {{ element.sEndAt }}
-                    </span> 
-                  </td>
-                </ng-container>
-    
-                <!-- Evening lesson Column -->
-                <ng-container matColumnDef="EveningLesson">
-                  <th
-                    mat-header-cell
-                    *matHeaderCellDef
-                    class="f-w-600 mat-subtitle-1 f-s-14"
-                  >
-                 Evening Lesson
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element"
-                    class="mat-body-1 f-w-500"
-                  >
+<br>
+                  <span *ngIf="element.sBook !== ''">
+                    <span class="lessonHeader"> 2nd Lesson => </span>{{ element.sBook }}   {{ element.sChapter }}  : {{ element.sStartFrom }} -  {{ element.sEndAt }}
+                  </span> 
+<br>
                   <span *ngIf="element.eBook !== ''">
-                    {{ element.eBook }}   {{ element.eChapter }}  : {{ element.eStartFrom }} -  {{ element.eEndAt }}
-                </span> 
+                 <span class="lessonHeader"> Evening Lesson => </span> {{ element.eBook }}   {{ element.eChapter }}  : {{ element.eStartFrom }} -  {{ element.eEndAt }}
+                  </span> 
                   </td>
                 </ng-container>
 
@@ -92,7 +72,7 @@
                     <th
                       mat-header-cell
                       *matHeaderCellDef
-                      class="f-w-600 mat-subtitle-1 f-s-14"
+                      class="f-w-600 mat-subtitle-1 f-s-14 tableHeader"
                     >
                    Only Lesson
                     </th>
@@ -112,7 +92,7 @@
                   <th
                     mat-header-cell
                     *matHeaderCellDef
-                    class="f-w-600 mat-subtitle-1 f-s-14"
+                    class="f-w-600 mat-subtitle-1 f-s-14 tableHeader "
                   >
                     Action
                   </th>

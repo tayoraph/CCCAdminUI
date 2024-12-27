@@ -23,7 +23,7 @@ export class BibleLessonService extends BaseHttpService {
    * @param value 
    * @returns 
    */
-  addNewUser(value:any) {
+  addNewLesson(value:any) {
         let con = environment.baseUrl + environment.createBibleLesson
         return this.post(con,value)
   }
@@ -42,4 +42,9 @@ export class BibleLessonService extends BaseHttpService {
     let con = environment.baseUrl + environment.deleteLesson+ id
     return this.delete(con)
   }
+
+  updateLesson(value:any, id:string) {
+    let con = environment.baseUrl + environment.updateBibleLesson + id
+    return this.put(con,value)
+}
 }

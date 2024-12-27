@@ -13,42 +13,42 @@ import { BibleLessonService } from '../BibleLesson.service';
   styleUrls: ['./add-new-lessons.component.scss']
 })
 export class AddNewLessonsComponent {
-  public id: string="";;
-  public year: string="";;
-  public month: string="";;
-  public day: string="";;
-  public dayOfTheWeek: string="";;
+  public id: string="";
+  public year: string="";
+  public month: string="";
+  public day: string="";
+  public dayOfTheWeek: string="";
   public weekOfTheYear: string = '1st';
-  public testament: string="";;
+  public testament: string="";
   public firstLesson!: Object;
-  public secondLesson: string="";;
-  public eveningLesson: string="";;
-  public onlyLesson: string="";;
-  fBook: string="";;
-  fStartFrom: string="";;
-  fChapter: string="";;
-  fEndAt: string="";;
-  sBook: string="";;
-  sStartFrom: string="";;
-  sChapter: string="";;
-  sEndAt: string="";;
-  eBook: string="";;
-  eStartFrom: string="";;
-  eChapter: string="";;
-  eEndAt: string="";;
-  oBook: string="";;
-  oStartFrom: string="";;
+  public secondLesson: string="";
+  public eveningLesson: string="";
+  public onlyLesson: string="";
+  fBook: string="";
+  fStartFrom: string="";
+  fChapter: string="";
+  fEndAt: string="";
+  sBook: string="";
+  sStartFrom: string="";
+  sChapter: string="";
+  sEndAt: string="";
+  eBook: string="";
+  eStartFrom: string="";
+  eChapter: string="";
+  eEndAt: string="";
+  oBook: string="";
+  oStartFrom: string="";
   oChapter: string="";
-  oEndAt: string="";;
-  typeOfTheDay: string="";;
-  hymnNo: string="";;
+  oEndAt: string="";
+  typeOfTheDay: string="";
+  hymnNo: string="";
   Lesson: bible[] = [];
   allBibleLesson: bible[] = [];
   singleBibleLessonById: bible[] = [];
 
   // public currentYear = new Date().getFullYear();
   public currentYear = "2025";
-  public currentMonth: string="";
+  public currentMonth: any="";
   public bibileBooks: Array<string> = bibileBooks
   public typeOfDay = typeOfDay;
   public weekDayList = weekDayList
@@ -56,6 +56,10 @@ export class AddNewLessonsComponent {
   public dayOfTheWeekList = dayOfTheWeek
   public newLessonForm!: FormGroup;
   public errorMessage = '';
+  selectedCriteria: any;
+  isUpdateRequest : boolean = false
+  isCurrentMonth = false
+  updateValue :any = ""
   // public validationMessages;
   /**
    *
@@ -67,6 +71,36 @@ export class AddNewLessonsComponent {
   }
 
 
+  ngOnInit(){
+    this.checkAndSetEditField()
+  }
+  
+  checkAndSetEditField(){
+   this.updateValue = sessionStorage.getItem("lesson")
+   if(this.updateValue !== null) this.isUpdateRequest = true;
+   this.updateValue = JSON.parse(this.updateValue)
+   this.currentMonth = this.updateValue.month
+   this.day = this.updateValue.day
+   this.dayOfTheWeek = this.updateValue.dayOfTheWeek
+   this.typeOfTheDay = this.updateValue.typeOfTheDay
+   this.fBook = this.updateValue.fBook
+   this.fStartFrom = this.updateValue.fStartFrom
+   this.fChapter = this.updateValue.fChapter
+   this.fEndAt = this.updateValue.fEndAt
+   this.sBook = this.updateValue.sBook
+   this.sStartFrom = this.updateValue.sStartFrom
+   this.sEndAt = this.updateValue.sEndAt
+   this.eBook = this.updateValue.eBook
+   this.eStartFrom = this.updateValue.eStartFrom
+   this.eChapter = this.updateValue.eChapter
+   this.eEndAt = this.updateValue.eEndAt
+   this.oBook = this.updateValue.oBook
+   this.oStartFrom = this.updateValue.oStartFrom
+   this.oChapter = this.updateValue.oChapter
+   this.oEndAt = this.updateValue.oEndAt
+   this.hymnNo = this.updateValue.hymnNo
+
+  }
   
   getDateDayName(event:any) {
     // new Date('05 October 2011 14:48 UTC');
@@ -111,42 +145,73 @@ export class AddNewLessonsComponent {
      }
    }
  
+
+   mapData(){
+    const newLesson = {
+      year: this.currentYear.toString(),
+      month: this.currentMonth,
+      day: this.day,
+      dayOfTheWeek: this.dayOfTheWeek,
+      weekOfTheYear: this.weekOfTheYear,
+      testament: this.testament != undefined ? this.testament : '',
+      fBook: this.fBook != undefined ? this.fBook : '',
+      fStartFrom: this.fStartFrom != undefined ? this.fStartFrom : '',
+      fChapter: this.fChapter != undefined ? this.fChapter : '',
+      fEndAt: this.fEndAt != undefined ? this.fEndAt : '',
+      sBook: this.sBook != undefined ? this.sBook : '',
+      sStartFrom: this.sStartFrom != undefined ? this.sStartFrom : '',
+      sChapter: this.sChapter != undefined ? this.sChapter : '',
+      sEndAt: this.sEndAt != undefined ? this.sEndAt : '',
+      eBook: this.eBook != undefined ? this.eBook : '',
+      eStartFrom: this.eStartFrom != undefined ? this.eStartFrom : '',
+      eChapter: this.eChapter != undefined ? this.eChapter : '',
+      eEndAt: this.eEndAt != undefined ? this.eEndAt : '',
+      oBook: this.oBook != undefined ? this.oBook : '',
+      oStartFrom: this.oStartFrom != undefined ? this.oStartFrom : '',
+      oChapter: this.oChapter != undefined ? this.oChapter : '',
+      oEndAt: this.oEndAt != undefined ? this.oEndAt : '',
+      typeOfTheDay: this.typeOfTheDay != undefined ? this.typeOfTheDay : '',
+      hymnNo: this.hymnNo != undefined ? this.hymnNo : '',
+    }
+    return newLesson
+   }
    addNewLesson() {
     let user = this;
-     const newLesson = {
-       year: this.currentYear.toString(),
-       month: this.currentMonth,
-       day: this.day,
-       dayOfTheWeek: this.dayOfTheWeek,
-       weekOfTheYear: this.weekOfTheYear,
-       testament: this.testament != undefined ? this.testament : '',
-       fBook: this.fBook != undefined ? this.fBook : '',
-       fStartFrom: this.fStartFrom != undefined ? this.fStartFrom : '',
-       fChapter: this.fChapter != undefined ? this.fChapter : '',
-       fEndAt: this.fEndAt != undefined ? this.fEndAt : '',
-       sBook: this.sBook != undefined ? this.sBook : '',
-       sStartFrom: this.sStartFrom != undefined ? this.sStartFrom : '',
-       sChapter: this.sChapter != undefined ? this.sChapter : '',
-       sEndAt: this.sEndAt != undefined ? this.sEndAt : '',
-       eBook: this.eBook != undefined ? this.eBook : '',
-       eStartFrom: this.eStartFrom != undefined ? this.eStartFrom : '',
-       eChapter: this.eChapter != undefined ? this.eChapter : '',
-       eEndAt: this.eEndAt != undefined ? this.eEndAt : '',
-       oBook: this.oBook != undefined ? this.oBook : '',
-       oStartFrom: this.oStartFrom != undefined ? this.oStartFrom : '',
-       oChapter: this.oChapter != undefined ? this.oChapter : '',
-       oEndAt: this.oEndAt != undefined ? this.oEndAt : '',
-       typeOfTheDay: this.typeOfTheDay != undefined ? this.typeOfTheDay : '',
-       hymnNo: this.hymnNo != undefined ? this.hymnNo : '',
-     }
-     
-     this._bibleLessonService.addNewUser(newLesson)
+    let newLesson = this.mapData()
+     this._bibleLessonService.addNewLesson(newLesson)
      .subscribe({
       next(value:any) {
         if(value.isSuccessful){
           // console.log("Saving bible lesson result ", value)
           user.alert.success(value.message);
           user.resetFormFields();
+        }
+        else
+        user.alert.info(value.message);
+
+      },
+      error(err) {
+        user.alert.error('An Error Occurred ');
+        
+      },
+     }) 
+   }
+
+
+   /**
+    * save updated data to server
+    */
+   updateLesson(){
+    let user = this;
+    let newLesson = this.mapData()
+     this._bibleLessonService.updateLesson(newLesson, this.updateValue._id)
+     .subscribe({
+      next(value:any) {
+        if(value.isSuccessful){
+          // console.log("Saving bible lesson result ", value)
+          user.alert.success(value.message);
+          user.resetFormFields();
+          sessionStorage.removeItem('lesson')
         }
         else
         user.alert.info(value.message);
@@ -182,6 +247,8 @@ export class AddNewLessonsComponent {
   this.oEndAt = '';
   this.typeOfTheDay = '';
   this.currentMonth = '';
+  this.hymnNo = '';
 
  }
+
 }
