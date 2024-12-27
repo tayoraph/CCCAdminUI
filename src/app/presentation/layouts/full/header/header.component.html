@@ -2,9 +2,9 @@
 
   <ng-container *ngIf="showSideMenu">
   <!-- Mobile Menu -->
-  <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+  <!-- <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
     <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
-  </button>
+  </button> -->
   
   <!-- --------------------------------------------------------------- -->
 
@@ -12,9 +12,9 @@
   <!-- Notification Dropdown -->
   <!-- --------------------------------------------------------------- -->
 
-  <button mat-icon-button aria-label="Notifications">
+  <!-- <button mat-icon-button aria-label="Notifications">
     <i-tabler class="d-flex" name="bell" matBadge="9" matBadgeColor="primary"></i-tabler>
-  </button>
+  </button> -->
 
   <span class="flex-1-auto"></span>
 
@@ -27,10 +27,10 @@
     href=""
     target="_blank"
     class="d-flex justify-content-center"
-  >
+  (click)="logout()">
     Logout
   </a>
-  <button
+  <!-- <button
     mat-icon-button
     [matMenuTriggerFor]="profilemenu"
     aria-label="Notifications" class="m-l-10"
@@ -70,10 +70,10 @@
         >Logout</a
       >
     </div>
-  </mat-menu>
+  </mat-menu> -->
 </ng-container>
 
-<ng-container *ngIf="!showSideMenu">
+<ng-container *ngIf="!showSideMenu" style="text-align: right !important;">
   <button
   mat-icon-button
   aria-label="Notifications" class="m-l-10"
@@ -84,5 +84,15 @@
     width="35"
   />
 </button>
+<a
+mat-flat-button
+color="primary"
+href=""
+target="_blank"
+class="d-flex justify-content-center"
+(click)="logout()"
+>
+Logout
+</a>
 </ng-container>
 </mat-toolbar>

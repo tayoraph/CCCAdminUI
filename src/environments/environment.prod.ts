@@ -23,5 +23,8 @@ export const environment = {
   },
   excemptedUrlArray:["dap/getAllDap","dap/dapAudio"],
   getAllDap:"dap/getAllDap",
+  createBibleLesson:"biblelessons/create",
+  getBibleLessonsList:'biblelessons/getBibleLessonsList',
+  deleteLesson:'biblelessons/'
 
 };

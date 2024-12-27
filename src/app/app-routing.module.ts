@@ -29,7 +29,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/lesson',
         pathMatch: 'full',
       },
       {
@@ -56,6 +56,15 @@ const routes: Routes = [
           import('./presentation/pages/Doctrine/doctrine.module').then(
             (m) => m.DoctrineModule
           ),
+      },
+      {
+        path: 'lesson',
+        loadChildren: () =>
+          import('./presentation/pages/BibleLessons/Biblelessons.module').then(
+            (m) => m.BibleLessonModule
+          ),
+          canActivate: [authGuard]
+
       },
     ],
   },

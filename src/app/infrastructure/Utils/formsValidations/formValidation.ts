@@ -30,50 +30,23 @@ export class FormValidation {
     });
 }
 
-    /**
-     * 
-     * @returns Verify bvn 
-     */
-    VerifyBVN() {
-        return this.formBuilder.group({
-            BVN: new FormControl('', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])),
-           DOB: new FormControl(null),
-        });
-    }
+// newLessonForm(){
+//     return this.formBuilder.group({
+//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
+//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
+//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
+//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
+//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
+//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
+//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
+//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
+//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
+//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
+//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
+//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
+//     });
+// }
 
-        /**
-     * 
-     * @returns Verify bvn 
-     */
-        VerifyOTP() {
-            return this.formBuilder.group({
-                input1: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input2: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input3: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input4: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input5: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input6: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-            });
-        }
-    
 
-    /**
-     * returns Step by step form 
-     */
-
-    stepThree() {
-        return this.formBuilder.group({ 
-            email: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-            ])),
-            title: new FormControl('', Validators.compose([])),
-            maritalStatus: new FormControl('',  Validators.compose([])),
-            name: new FormControl('', Validators.compose([])),
-            mothersMaidenName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
-           
-        });
-    }
-   
 
 }
