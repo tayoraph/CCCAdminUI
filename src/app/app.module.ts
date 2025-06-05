@@ -26,6 +26,7 @@ import { PersistenceModule } from './infrastructure/persistence/persistence-modu
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { LoaderModule } from './infrastructure/Utils/Loader/loader.module';
 import { DoctrineModule } from './presentation/pages/Doctrine/doctrine.module';
+import { BibleLessonModule } from './presentation/pages/BibleLessons/Biblelessons.module';
 
 //Import Layouts
 
@@ -66,7 +67,8 @@ import { DoctrineModule } from './presentation/pages/Doctrine/doctrine.module';
     }),
     CoreModule,
     LoaderModule,
-    DoctrineModule
+    DoctrineModule,
+    BibleLessonModule
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

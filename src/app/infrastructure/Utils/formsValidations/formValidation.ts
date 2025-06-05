@@ -30,50 +30,28 @@ export class FormValidation {
     });
 }
 
-    /**
-     * 
-     * @returns Verify bvn 
-     */
-    VerifyBVN() {
-        return this.formBuilder.group({
-            BVN: new FormControl('', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])),
-           DOB: new FormControl(null),
-        });
-    }
+newSundaySchoolForm(){
+    return this.formBuilder.group({
+        // SubTheme: new FormControl('', Validators.compose([  ])),
+        // Theme: new FormControl('', Validators.compose([ ])),
+        Unit: new FormControl('', Validators.compose([Validators.required ])),
+        Week: new FormControl('', Validators.compose([ Validators.required ])),
+        Month: new FormControl('', Validators.compose([ Validators.required ])),
+        Topic: new FormControl('', Validators.compose([ Validators.required])),
+        Day: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingBook: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingChapter: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingStartVerse: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingEndVerse: new FormControl('', Validators.compose([ Validators.required ])),
+        Focus: new FormControl('', Validators.compose([ Validators.required])),
+        Notes: new FormControl('', Validators.compose([ Validators.required ])),
+        MemoryVerseBook: new FormControl('', Validators.compose([ Validators.required])),
+        MemoryVerseChapter: new FormControl('', Validators.compose([ Validators.required])),
+        MemoryVerseStartVerse: new FormControl('', Validators.compose([ Validators.required])),
+        MemoryVerseEndVerse: new FormControl('', Validators.compose([ Validators.required]))
+    });
+}
 
-        /**
-     * 
-     * @returns Verify bvn 
-     */
-        VerifyOTP() {
-            return this.formBuilder.group({
-                input1: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input2: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input3: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input4: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input5: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-                input6: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(1)])),
-            });
-        }
-    
 
-    /**
-     * returns Step by step form 
-     */
-
-    stepThree() {
-        return this.formBuilder.group({ 
-            email: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-            ])),
-            title: new FormControl('', Validators.compose([])),
-            maritalStatus: new FormControl('',  Validators.compose([])),
-            name: new FormControl('', Validators.compose([])),
-            mothersMaidenName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
-           
-        });
-    }
-   
 
 }

@@ -7,6 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 
@@ -23,8 +24,8 @@ export class HeaderComponent implements OnInit {
   @Output() toggleCollapsed = new EventEmitter<void>();
 
   showFiller = false;
-  showSideMenu = false;
-  constructor(public dialog: MatDialog) {}
+  showSideMenu = true;
+  constructor(public dialog: MatDialog, public router: Router) {}
 
   ngOnInit(): void {
     this.getcurrentUrl();
@@ -37,5 +38,9 @@ export class HeaderComponent implements OnInit {
         this.showSideMenu = false;
       }
     });
+  }
+  logout(){
+    this.router.navigate(["authentication/login"])
+    window.location.href= ""
   }
 }

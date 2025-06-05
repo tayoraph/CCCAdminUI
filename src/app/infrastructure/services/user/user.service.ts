@@ -19,8 +19,7 @@ export class UserService extends UserRepository {
     }
     login(params: LoginDto): Observable<UserModel> {
     let con = environment.baseUrl + environment.authentication.login;
-        
-        return this.post<UserEntity>(con, {params})
+        return this.post<UserEntity>(con, params)
                    .pipe(map(this.userMapper.mapFrom));
     }
     register(params: {phoneNum: string, password: string}): Observable<UserModel> {

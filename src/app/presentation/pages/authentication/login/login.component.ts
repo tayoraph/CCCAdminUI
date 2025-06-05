@@ -51,12 +51,20 @@ export class AppSideLoginComponent {
      let user = this
      this.userLoginUseCase.execute(authData)
      .subscribe({
-      next(value) {
+      next(value:any) {
+        if(value.isSuccessful){
+          // console.log("Saving bible lesson result ", value)
+          user.alert.success(value.message);    
+      
+
         let data : IDataStore ={ dataId: 4, dataName : "authToken",value : value }
         user.store.add(data)// pass token to store
-        user.alert.success('login successful');
+        // user.alert.success('login successful');
         user.loginForm.reset();
-        user.router.navigate(['app/dashboard'])
+        user.router.navigate(['app/lesson/add-new-lesson'])
+        }
+        else
+        user.alert.info(value.message)
       },
       error(err) {
         user.alert.error('login failed');

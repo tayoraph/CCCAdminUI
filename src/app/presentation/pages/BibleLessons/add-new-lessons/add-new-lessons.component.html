@@ -1,0 +1,273 @@
+
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Bible Lessons</mat-card-title>
+      <mat-card-subtitle class="mat-body-1">Add New Lessons</mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <div class="row">
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Month</mat-label>
+                <mat-select [(ngModel)]="currentMonth" >
+                   <ng-container *ngIf="currentMonth != ''">
+                       <mat-option value="{{currentMonth}}">{{currentMonth}}</mat-option>
+                   </ng-container>
+                    <mat-option *ngFor="let currentMonth of weekDayList" [value]="currentMonth">{{currentMonth}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Day'Date</mat-label>
+                <mat-select  [(ngModel)]=" day" name="day">
+                   <ng-container *ngIf="day != ''">
+                    <mat-option value="{{day}}">{{day}}</mat-option>
+                    </ng-container>
+                    <mat-option *ngFor="let item of currentDayDate" [value]="item">{{item}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+   
+
+      </div>
+
+
+
+    <div class="row">
+      <!-- Day of the Week Starts Here -->
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Days of the Week</mat-label>
+                <mat-select  [(ngModel)]=" dayOfTheWeek" name="dayOfTheWeek">
+                    <ng-container *ngIf="dayOfTheWeek != ''">
+                        <mat-option value="{{dayOfTheWeek}}">{{dayOfTheWeek}}</mat-option>
+                    </ng-container>
+                    <mat-option *ngFor="let item of dayOfTheWeekList" [value]="item">{{item}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+      <!-- Day of the Week ends Here -->
+
+
+         <!-- type of day Starts Here -->
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Day Type</mat-label>
+                <mat-select [(ngModel)]="typeOfTheDay"  name="firstLesson">
+                    <ng-container *ngIf="typeOfTheDay != ''">
+                        <mat-option value="{{typeOfTheDay}}">{{typeOfTheDay}}</mat-option>
+                    </ng-container>
+                    <mat-option *ngFor="let item of typeOfDay" [value]="item">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+      <!-- type of day ends Here -->
+
+
+    </div>
+
+
+    <ng-container *ngIf="dayOfTheWeek === 'Sunday'">
+      <!-- First lesson details Starts here -->
+      <span matListItemTitle class="f-s-16 f-w-600">First Lesson Details</span>
+
+    <div class="row" >
+           <!-- First Lesson Starts Here  -->
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>First Lesson Book</mat-label>
+                <mat-select [(ngModel)]=" fBook" name="firstLesson.fBook">
+                    <ng-container *ngIf="fBook != ''">
+                        <mat-option value="{{fBook}}">{{fBook}}</mat-option>
+                    </ng-container>
+                    <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>First Lesson Chapter</mat-label>
+                <input matInput [(ngModel)]=" fChapter" name="firstLesson.fChapter" type="number"/>
+            </mat-form-field>
+        </div>
+   
+  
+    </div>
+
+    <div class="row">
+        <!-- First Lesson Starts Here  -->
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>First Lesson Start Verse</mat-label>
+                <input matInput [(ngModel)]=" fStartFrom" name="firstLesson.fStartFrom" type="number"/>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+         <mat-form-field appearance="outline" class="w-100" color="primary" >
+             <mat-label>First Lesson End Verse</mat-label>
+             <input matInput [(ngModel)]=" fEndAt" name="firstLesson.fEndAt" type="number"/>
+         </mat-form-field>
+        </div>
+        <!-- First Lesson ends Here  -->
+
+
+        
+    </div>
+      <!-- First lesson details ends here -->
+
+   
+      <!-- Second Lesson Details starts here  -->
+      <span matListItemTitle class="f-s-16 f-w-600">Second Lesson</span>
+
+    <div class="row" >
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Second Lesson Book</mat-label>
+                <mat-select [(ngModel)]=" sBook" name="Second.sBook">
+                    <ng-container *ngIf="sBook != ''">
+                        <mat-option value="{{sBook}}">{{sBook}}</mat-option>
+                    </ng-container>
+                    <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Second Lesson Chapter</mat-label>
+                <input matInput [(ngModel)]=" sChapter"  name="Second.sChapter" type="number"/>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Second Lesson Start Verse</mat-label>
+                <input matInput [(ngModel)]=" sStartFrom" name="Second.sStartFrom" type="number"/>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+        <mat-form-field appearance="outline" class="w-100" color="primary" >
+            <mat-label>Second Lesson End Verse</mat-label>
+            <input matInput [(ngModel)]=" sEndAt" name="Second.sEndAt" type="number"/>
+        </mat-form-field>
+        </div>
+
+
+        
+    </div>
+      <!-- Second Lesson Details ends here  -->
+
+      <!-- Evening Lesson Details starts here  -->
+      <span matListItemTitle class="f-s-16 f-w-600">Evening Lesson Details</span>
+
+    <div class="row" >
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Evening Lesson Book</mat-label>
+                <mat-select [(ngModel)]=" eBook" name="eBook">
+                    <ng-container *ngIf="eBook != ''">
+                        <mat-option value="{{eBook}}">{{eBook}}</mat-option>
+                    </ng-container>
+                    <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Evening Lesson Chapter</mat-label>
+                <input matInput [(ngModel)]=" eChapter" name="eChapter" type="number"/>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Evening Lesson Start Verse</mat-label>
+                <input matInput [(ngModel)]=" eStartFrom" name="eStartFrom" type="number"/>
+            </mat-form-field>
+        </div>
+        <div class=" col-lg-6">
+        <mat-form-field appearance="outline" class="w-100" color="primary" >
+            <mat-label>Evening Lesson End Verse</mat-label>
+            <input matInput [(ngModel)]=" eEndAt" name="Evening.eEndAt" type="number"/>
+        </mat-form-field>
+        </div>
+
+
+        
+    </div>
+      <!-- Evening Lesson Details ends here  -->
+
+    </ng-container>
+
+   
+    
+    <ng-container *ngIf=" dayOfTheWeek !== 'Sunday'">
+        <span matListItemTitle class="f-s-16 f-w-600">Only Lesson Details</span>
+
+        <div class="row" >
+         <div class=" col-lg-6">
+             <mat-form-field appearance="outline" class="w-100" color="primary" >
+                 <mat-label>Only Lesson Book</mat-label>
+                 <mat-select [(ngModel)]=" oBook" name="oBook">
+                    <ng-container *ngIf="oBook != ''">
+                        <mat-option value="{{oBook}}">{{oBook}}</mat-option>
+                    </ng-container>
+                     <mat-option *ngFor="let item of bibileBooks" [value]="item">{{item}}</mat-option>
+                 </mat-select>
+             </mat-form-field>
+         </div>
+         <div class=" col-lg-6">
+             <mat-form-field appearance="outline" class="w-100" color="primary" >
+                 <mat-label>Only Lesson Chapter</mat-label>
+                 <input matInput  [(ngModel)]=" oChapter" name="oChapter" type="number"/>
+             </mat-form-field>
+         </div>
+    
+   
+     </div>
+ 
+     <div class="row">
+         <div class=" col-lg-6">
+             <mat-form-field appearance="outline" class="w-100" color="primary" >
+                 <mat-label>Only Lesson Start Verse</mat-label>
+                 <input matInput [(ngModel)]=" oStartFrom" name="oStartFrom" type="number"/>
+             </mat-form-field>
+         </div>
+         <div class=" col-lg-6">
+          <mat-form-field appearance="outline" class="w-100" color="primary" >
+              <mat-label>Only Lesson End Verse</mat-label>
+              <input matInput [(ngModel)]=" oEndAt" name="Only.oEndAt"  type="number"/>
+          </mat-form-field>
+         </div>
+ 
+ 
+         
+     </div>
+    </ng-container>
+
+    
+    <!--  Hymn Number -->
+    <div class="row">
+        <div class=" col-lg-12">
+         <mat-form-field appearance="outline" class="w-100" color="primary" >
+             <mat-label>Hymn No</mat-label>
+             <input matInput [(ngModel)]=" hymnNo" name="hymnNo.hymnNo"  type="number"/>
+         </mat-form-field>
+        </div>
+    </div>
+
+    <button *ngIf="!isUpdateRequest" mat-flat-button  color="primary" [matTooltip]="'Add '"   (click)="addNewLesson()"  aria-label="">
+       Submit
+    </button>
+
+    <button *ngIf="isUpdateRequest" mat-flat-button  color="primary" [matTooltip]="'Add '"   (click)="updateLesson()"  aria-label="">
+        Update
+     </button>
+    </mat-card-content>
+  </mat-card>
+  

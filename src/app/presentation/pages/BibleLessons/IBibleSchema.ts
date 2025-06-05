@@ -1,0 +1,28 @@
+ export interface bible {
+ 
+_id:string,
+ year: string,
+ month: string,
+ day: string,
+ dayOfTheWeek: string,
+ weekOfTheYear: string,
+  fBook: string,
+ eSBook: string,
+  eFBook: string,        
+  fChapter: string,
+  fStartFrom: string,
+  fEndAt: string,
+  sBook: string,
+  sChapter: string,
+  sStartFrom: string,
+  sEndAt: string,
+  eBook: string,
+  eChapter: string,
+  eStartFrom: string,
+  eEndAt: string,
+  oBook: string,
+  oChapter: string,
+  oStartFrom: string,
+  oEndAt: string,
+  typeOfTheDay: string
+ }

@@ -103,4 +103,20 @@ export abstract class BaseHttpService {
   
   
     }
+
+     /***
+   * @param url
+   * @method Delete method
+   * @response returns observable
+   */
+     protected delete<T>(url: string): Observable<T> {
+      return this.httpClient!.delete(url, { headers: headers, responseType: 'json'})
+      .pipe(map((result:any) => {
+        return result as T;
+      }),
+        retry(2),
+      );
+
+
+  }
 }

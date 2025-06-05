@@ -1,20 +1,46 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
+  // {
+  //   navCap: 'Home',
+  // },
+  // {
+  //   displayName: 'Dashboard',
+  //   iconName: 'layout-dashboard',
+  //   route: 'app/dashboard',
+  // },
   {
-    navCap: 'Home',
+    navCap: 'Lessons',
   },
   {
-    displayName: 'Dashboard',
-    iconName: 'layout-dashboard',
-    route: 'app/dashboard',
+    displayName: 'Add new Lessons',
+    iconName: 'vocabulary',
+    route: 'app/lesson/add-new-lesson',
+  },
+  {
+    displayName: 'Bible Lessons List',
+    iconName: 'list-numbers',
+    route: 'app/lesson/bible-lesson-list',
+  },
+  {
+    navCap: 'Sunday School',
+  },
+  {
+    displayName: 'Sunday Scchool Lessons',
+    iconName: 'book',
+    route: 'app/SundaySchoolLesson/sunday-school-lesson-list',
+  },
+  {
+    displayName: 'Add new Lessons',
+    iconName: 'book',
+    route: 'app/SundaySchoolLesson/add-new-sunday-school-lesson',
   },
   {
     navCap: 'Doctrine',
   },
   {
     displayName: 'Dap',
-    iconName: 'layout-dashboard',
+    iconName: 'book',
     route: 'app/dap/dapAudio',
   },
   // {
