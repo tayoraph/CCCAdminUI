@@ -18,7 +18,7 @@ export class AddNewSundaySchoolLessonComponent {
 
   public bibleBooks: Array<string> = bibileBooks
 
-  public currentYear = "2026";
+  public currentYear = new Date().getFullYear();
   public currentMonth: any="";
   public newLessonForm : FormGroup;
   public errorMessage = '';
@@ -51,24 +51,24 @@ export class AddNewSundaySchoolLessonComponent {
   }
   
 
-  // getDateDayName(event:any) {
-  //   // new Date('05 October 2011 14:48 UTC');
-  //   let day = this.day.length > 3 ?this.day.substring(0, 2) : this.day.substring(0, 1)
-  //    let currentDate = day + " " + this.currentMonth + " ";
-  //    // console.log(currentDate)
-  //    let a = new Date(currentDate);
-  //    let weekdays = new Array(7);
-  //    weekdays[0] = "Sunday";
-  //    weekdays[1] = "Monday";
-  //    weekdays[2] = "Tuesday";
-  //    weekdays[3] = "Wednesday";
-  //    weekdays[4] = "Thursday";
-  //    weekdays[5] = "Friday";
-  //    weekdays[6] = "Saturday";
-  //    this.dayOfTheWeek = weekdays[a.getDay()];
-  //    this.getTypeOfDay()
+  getDateDayName(day:string, month:string, year:string){
+    // new Date('05 October 2011 14:48 UTC');
+    let dayValue = day.length > 3 ?day.substring(0, 2) : day.substring(0, 1)
+     let currentDate = dayValue + " " + month + " " + year;
+     // console.log(currentDate)
+     let a = new Date(currentDate);
+     let weekdays = new Array(7);
+     weekdays[0] = "Sunday";
+     weekdays[1] = "Monday";
+     weekdays[2] = "Tuesday";
+     weekdays[3] = "Wednesday";
+     weekdays[4] = "Thursday";
+     weekdays[5] = "Friday";
+     weekdays[6] = "Saturday";
+     return  weekdays[a.getDay()];
+    
  
-  //  }
+   }
 
   submitBibleReading(){ 
     let bibleReading = `${ this.newLessonForm.get('BibleReadingBook')?.value} ${this.newLessonForm.get('BibleReadingChapter')?.value}:${this.newLessonForm.get('BibleReadingStartVerse')?.value}-${this.newLessonForm.get('BibleReadingEndVerse')?.value}`
@@ -89,20 +89,22 @@ export class AddNewSundaySchoolLessonComponent {
     this.bibleReadingArray = this.bibleReadingArray.splice(index, 1);
   }
 
-  mapreq(value:any){
-  
+  mapreq(value:any, typeOfDay:string): sundaySchoolLessonRequest {
     let year = new Date().getFullYear().toString();
-  if(this.bibleReadingArray.length == 0 ){
-    let bibleReading = `${value.BibleReadingBook} ${value.BibleReadingChapter}:${value.BibleReadingStartVerse}-${value.BibleReadingEndVerse}`
-    this.bibleReadingArray.push(bibleReading)
-    console.log(this.bibleReadingArray)
-  }
+    // let typeOfDay = this.getDateDayName(value.Day, value.Month, year);
+    // if(typeOfDay !== 'Sunday')
+    //   return this.alert.error('The day selected is not a Sunday. Please select a Sunday date.');
+
+    if(this.bibleReadingArray.length == 0 ){
+      let bibleReading = `${value.BibleReadingBook} ${value.BibleReadingChapter}:${value.BibleReadingStartVerse}-${value.BibleReadingEndVerse}`
+      this.bibleReadingArray.push(bibleReading)
+    }
     let newLesson: sundaySchoolLessonRequest = {
       SubTheme: value.SubTheme,
       Theme: value.Unit.Theme,
       Week: {
         Topic: value.Topic,
-        Date: `${value.Day} ${value.Month} ${this.currentYear}`,
+        Date: `${typeOfDay}, ${value.Day} ${value.Month} ${this.currentYear}`,
         Duration: this.duration,
         BibleReading: this.bibleReadingArray,
         Focus: value.Focus,
@@ -112,7 +114,7 @@ export class AddNewSundaySchoolLessonComponent {
       },
       reqDetails: {
         month: value.Month,
-        year: this.currentYear,
+        year: year,
       }, 
       unit: value.Unit.unitText
     }
@@ -120,13 +122,18 @@ export class AddNewSundaySchoolLessonComponent {
 
   }
 
-   addNewLesson(value:any){ {
-    let req = this.mapreq(value)
+   addNewLesson(value:any){ 
+    let year = new Date().getFullYear().toString();
+    let typeOfDay = this.getDateDayName(value.Day, value.Month, year);
+    if(typeOfDay !== 'Sunday')
+      return this.alert.error('The day selected is not a Sunday. Please select a Sunday date.');
+
+    let req = this.mapreq(value, typeOfDay)
     console.log("value", value)
     console.log("req", req)
     let user = this;
    
-     this._sundaySchoolLessonService.createNewSundaySchoolLesson(req)
+     return this._sundaySchoolLessonService.createNewSundaySchoolLesson(req)
      .subscribe({
       next(value:any) {
         if(value.isSuccessful){
@@ -198,5 +205,5 @@ export class AddNewSundaySchoolLessonComponent {
 //   this.hymnNo = '';
 
 //  }
-  }
+  
 }

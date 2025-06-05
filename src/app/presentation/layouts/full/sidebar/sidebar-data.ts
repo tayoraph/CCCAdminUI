@@ -23,18 +23,19 @@ export const navItems: NavItem[] = [
     route: 'app/lesson/bible-lesson-list',
   },
   {
-    navCap: 'Sunday School',
+    navCap: 'Sunday School Lessons',
   },
   {
-    displayName: 'Sunday Scchool Lessons',
-    iconName: 'book',
-    route: 'app/SundaySchoolLesson/sunday-school-lesson-list',
-  },
-  {
-    displayName: 'Add new Lessons',
+    displayName: 'New Lessons',
     iconName: 'book',
     route: 'app/SundaySchoolLesson/add-new-sunday-school-lesson',
   },
+  {
+    displayName: 'Sunday School List',
+    iconName: 'list-numbers',
+    route: 'app/SundaySchoolLesson/sunday-school-lesson-list',
+  },
+  
   {
     navCap: 'Doctrine',
   },

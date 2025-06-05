@@ -17,7 +17,7 @@ export class SundaySchoolLessonListComponent {
 dataSource!: MatTableDataSource<any> ;
   dataSize: number = 0;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  displayedColumns: string[] = ['S/N','Topic', 'Focus', "Notes", 'Date', 'BibleReading','MemoryVerse', 'Action'];
+  displayedColumns: string[] = ['Week','Topic', 'Focus', "Notes", 'Date', 'BibleReading','MemoryVerse', 'Action'];
   public listOfLessons = []
   public listOfLessonsFromServer : sundaySchoolLessonRequest[] = []
   public searchItem = "";
@@ -28,11 +28,13 @@ dataSource!: MatTableDataSource<any> ;
   public unitsDetails = unitsDetails
    public currentMonth: any="";
    public queryUnit: any="";
+   public currentYear = new Date().getFullYear().toString()
   public queryParam:getSscUnitByMonthReqParameters = {
     month: '',
     unit: '',
-    year: new Date().getFullYear().toString()
-  }
+    year: this.currentYear
+  };
+  public lessonDetails:any
 
   /**
    *
@@ -48,18 +50,28 @@ dataSource!: MatTableDataSource<any> ;
     let user = this;
       this.queryParam.month= this.currentMonth;
       this.queryParam.unit = this.queryUnit.unitText;
-let resArray :Array<Object> =[]
+    let resArray :Array<Object> =[]
     this._sundaySchoolLessonService.getSundaySchoolLessonForAMonth(this.queryParam)
     .subscribe({
      next(res:any) {
-       console.log("sunday lesson list ", res)
+      //  console.log("sunday lesson list ", res)
        if(res.isSuccessful){
-        if(res.data[0].sundaySchoolLessons == undefined)
+        user.lessonDetails = res.data[0].sundaySchoolLessons;
+        if(res.data[0].sundaySchoolLessons == undefined){
           user.alert.info(` Sunday School Lesson is missing for ${user.queryParam.month}.`)
+         user.dataSource = new MatTableDataSource(resArray);
+         user.dataSource.paginator = user.paginator;}
        else{
         user.listOfLessonsFromServer = res.data[0].sundaySchoolLessons[user.queryParam.year][user.queryParam.unit]['Lesson'][user.queryParam.month];
         let weeks = res.data[0].sundaySchoolLessons[user.queryParam.year][user.queryParam.unit]['Lesson'][user.queryParam.month];
-        resArray.push(weeks['Week1'],weeks['week2'],weeks['week3'],weeks['week4'], )
+       
+        resArray.push(
+          {week:'Week 1', value: weeks['Week1']},
+          {week:'week 2', value: weeks['week2']},
+          {week:'week 3', value: weeks['week3']},
+          {week:'week 4', value: weeks['week4']}
+         )
+        resArray = resArray.filter((ele:any) => ele.value != undefined);
          user.dataSource = new MatTableDataSource(resArray);
          user.dataSource.paginator = user.paginator;
          user.alert.success(res.message);
@@ -102,7 +114,7 @@ let resArray :Array<Object> =[]
    */
   editLesson(lesson:bible){
     sessionStorage.setItem("lesson", JSON.stringify(lesson));
-    this.router.navigate(['app/lesson/add-new-lesson'])
+    // this.router.navigate(['app/lesson/add-new-lesson'])
   }
 
   /**
@@ -110,11 +122,31 @@ let resArray :Array<Object> =[]
    * @param lesson 
    */
 
-  deleteLesson(lesson:bible){
+  deleteLesson(lesson:any){
    if(window.confirm(`Are you sure you want to delete the Bible lesson for ${lesson.dayOfTheWeek},  ${lesson.day}  ${lesson.month}  ${lesson.year} `) == true)
    {
+ let les: sundaySchoolLessonRequest = {
+      SubTheme: "",
+      Theme: "",
+      Week: {
+        Topic: lesson.value.Topic,
+        Date: lesson.value.Date,
+        Duration: lesson.value.Duration,
+        BibleReading: lesson.value.BibleReading,
+        Focus: lesson.value.Focus,
+        Notes: lesson.value.Notes,
+        MemoryVerse: lesson.value.MemoryVerse,
+        week: lesson.week.replace(' ','')
+      },
+      reqDetails: {
+        month: this.queryParam.month,
+        year: this.queryParam.year,
+      }, 
+      unit: this.queryParam.unit
+    }
+
     let user = this;
-    this._sundaySchoolLessonService.deleteLesson(lesson._id)
+    this._sundaySchoolLessonService.deleteLesson(les)
     .subscribe({
       next(value:any) {
         // console.log( value)
