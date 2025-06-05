@@ -30,22 +30,27 @@ export class FormValidation {
     });
 }
 
-// newLessonForm(){
-//     return this.formBuilder.group({
-//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
-//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
-//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
-//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
-//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
-//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
-//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
-//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
-//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
-//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
-//         currentYear: new FormControl('', Validators.compose([ Validators.required ])),
-//         currentMonth: new FormControl('', Validators.compose([ Validators.required])),
-//     });
-// }
+newSundaySchoolForm(){
+    return this.formBuilder.group({
+        // SubTheme: new FormControl('', Validators.compose([  ])),
+        // Theme: new FormControl('', Validators.compose([ ])),
+        Unit: new FormControl('', Validators.compose([Validators.required ])),
+        Week: new FormControl('', Validators.compose([ Validators.required ])),
+        Month: new FormControl('', Validators.compose([ Validators.required ])),
+        Topic: new FormControl('', Validators.compose([ Validators.required])),
+        Day: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingBook: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingChapter: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingStartVerse: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingEndVerse: new FormControl('', Validators.compose([ Validators.required ])),
+        Focus: new FormControl('', Validators.compose([ Validators.required])),
+        Notes: new FormControl('', Validators.compose([ Validators.required ])),
+        MemoryVerseBook: new FormControl('', Validators.compose([ Validators.required])),
+        MemoryVerseChapter: new FormControl('', Validators.compose([ Validators.required])),
+        MemoryVerseStartVerse: new FormControl('', Validators.compose([ Validators.required])),
+        MemoryVerseEndVerse: new FormControl('', Validators.compose([ Validators.required]))
+    });
+}
 
 
 

@@ -33,6 +33,11 @@ getBibleLessonsList:'biblelessons/getBibleLessonsList',
 deleteLesson:'biblelessons/',
 updateBibleLesson:"biblelessons/",
 
+sundaySchoolLessons:{
+  createNewSundaySchoolLesson:"SSC/saveNewSSCLesson",
+  getSundaySchoolLessonForAMonth:"SSC/getSundaySchoolLessonForAMonth",
+  
+}
 
 };
 

@@ -25,8 +25,8 @@ export class AppSideLoginComponent {
    
    
    this.loginForm.patchValue({
-    //  email: 'raphael@gmail.com',
-    //  password: 'Password123',
+     email: 'raphael@gmail.com',
+     password: 'Password123',
    });
    
     this.dataStore.items$.subscribe({

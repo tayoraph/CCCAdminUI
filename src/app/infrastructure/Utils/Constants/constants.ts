@@ -167,3 +167,17 @@ export const dayOfTheWeek = [
   "Saturday",
   "Sunday",
 ]
+
+
+export const sshWeekDetails = [
+    {weekname: 'Week 1', weeknumber: 1, weekText: 'Week1'},
+    {weekname: 'Week 2', weeknumber: 2, weekText: 'week2'},
+    {weekname: 'Week 3', weeknumber: 3, weekText: 'week3'},
+    {weekname: 'Week 4', weeknumber: 4, weekText: 'week4'}
+]
+
+export const unitsDetails = [
+  {unit: 'Unit 1', unitText: 'UnitOne', Theme : "Preschool Level"},
+  {unit: 'Unit 2', unitText: 'UnitTwo', Theme : "Elementary School Level"},
+  {unit: 'Unit 3', unitText: 'UnitThree', Theme : "High School Level"}
+]

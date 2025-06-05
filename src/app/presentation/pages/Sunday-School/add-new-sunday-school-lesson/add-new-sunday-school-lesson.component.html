@@ -1,0 +1,221 @@
+
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Sunday School Lessons</mat-card-title>
+      <mat-card-subtitle class="mat-body-1">Add New Lessons</mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+        <form class="m-t-30" [formGroup]="newLessonForm" (ngSubmit)="addNewLesson(newLessonForm.value)">
+      <div class="row">
+      <!--  Month  -->
+        <div class=" col-lg-5">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Month</mat-label>
+                <mat-select formControlName="Month">
+                   <ng-container *ngIf="currentMonth != ''">
+                       <mat-option value="{{currentMonth}}">{{currentMonth}}</mat-option>
+                   </ng-container>
+                    <mat-option *ngFor="let currentMonth of weekDayList" [value]="currentMonth">{{currentMonth}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <!--  Day's date -->
+        <div class=" col-lg-4">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Day'Date</mat-label>
+                <mat-select  formControlName="Day">
+                    <mat-option *ngFor="let item of currentDayDate" [value]="item">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>        
+        </div>
+
+        <!-- Unit -->
+        <div class=" col-lg-3">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Unit</mat-label>
+                <mat-select  formControlName="Unit">
+                    <mat-option *ngFor="let item of unitsDetails" [value]="item">{{item.unit}}</mat-option>
+                </mat-select>
+            </mat-form-field>       
+            <!-- <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>unit</mat-label>
+                <input matInput formControlName="Unit" type="number" [max]="3" [min]="1"/>
+            </mat-form-field> -->
+        </div>
+      </div>
+
+     
+    <div class="row">
+       <!--  Week -->
+       <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Week</mat-label>
+                <mat-select  formControlName="Week">
+                
+                    <mat-option *ngFor="let w of weekDetails" [value]="w.weekText">{{w.weekname}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+  
+        <!--  Topic -->
+       
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Topic</mat-label>
+                <input matInput formControlName="Topic" type="text"/>
+            </mat-form-field>
+        </div>
+       
+    </div>
+    
+
+    <div class="row">
+        <!--  Focus  -->
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Focus</mat-label>
+                <input matInput formControlName="Focus" type="textarea"/>
+            </mat-form-field>
+        </div>
+     
+          <!--  Notes -->
+        
+        <div class=" col-lg-6">
+            <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <mat-label>Notes</mat-label>
+                <input matInput formControlName="Notes" type="textarea"/>
+            </mat-form-field>
+        </div>
+    </div>
+   <br>
+          <!--  Bible Reading -->
+    <ng-container>
+        <span matListItemTitle class="f-s-16 f-w-600">Bible Reading </span>
+            <div class="row" >
+             <div class=" col-lg-6">
+                 <mat-form-field appearance="outline" class="w-100" color="primary" >
+                     <mat-label>Book</mat-label>
+                     <mat-select formControlName="BibleReadingBook">
+                        <!-- <ng-container *ngIf="oBook != ''">
+                            <mat-option value="{{oBook}}">{{oBook}}</mat-option>
+                        </ng-container> -->
+                         <mat-option *ngFor="let item of bibleBooks" [value]="item">{{item}}</mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </div>
+             <div class=" col-lg-6">
+                 <mat-form-field appearance="outline" class="w-100" color="primary" >
+                     <mat-label>Chapter</mat-label>
+                     <input matInput  formControlName="BibleReadingChapter" type="number"/>
+                 </mat-form-field>
+             </div>
+         </div>
+        <div class="row">
+            <div class=" col-lg-6">
+                <mat-form-field appearance="outline" class="w-100" color="primary" >
+                     <mat-label>Start Verse</mat-label>
+                     <input matInput formControlName="BibleReadingStartVerse" type="number"/>
+                 </mat-form-field>
+             </div>
+             <div class=" col-lg-6">
+              <mat-form-field appearance="outline" class="w-100" color="primary" >
+                  <mat-label>End Verse</mat-label>
+                  <input matInput formControlName="BibleReadingEndVerse"  type="number"/>
+              </mat-form-field>
+             </div>
+         </div>
+         <div class="row">
+            <div class=" col-lg-6">
+                <div *ngFor="let b of bibleReadingArray; let i = index;">
+                    <div class="row">
+                        <div class=" col-lg-6">
+                           <span class="indexCss"> {{ i + 1 }}: </span>  {{b}}
+                        </div>
+                        <div class=" col-lg-6">
+                            <button  mat-mini-fab  class="bg-light-error text-error shadow-none icon-27" (click)="removeBibleReadingFromArray(i+1)">
+                                <i-tabler name="trash" class="icon-20"></i-tabler>
+                            </button>
+                       
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class=" col-lg-6">
+                <div class="row" class="" style="float: right !important;">
+                       
+                        <button type="button"  mat-flat-button  color="primary" [matTooltip]="'Submit'"  [disabled]="newLessonForm.get('BibleReadingBook')?.value == '' || newLessonForm.get('BibleReadingChapter')?.value == '' || newLessonForm.get('BibleReadingStartVerse')?.value == '' || newLessonForm.get('BibleReadingEndVerse')?.value == ''" (click)="submitBibleReading()" aria-label="">
+                            Add
+                        </button> &nbsp;
+                        <button *ngIf="bibleReadingArray.length >= 1" type="button"  mat-flat-button  color="accent" [matTooltip]="'Add Another Bible Reading'"   (click)="clearBibleReadingInput()" aria-label="">
+                            Add Another Bible Reading
+                        </button>
+                    
+                </div>
+            </div>
+        </div>
+       
+    </ng-container>
+  
+    <br>
+        <!--  Memory Verse -->
+    <ng-container>
+        <span matListItemTitle class="f-s-16 f-w-600">Memory Verse</span>
+            <div class="row" >
+             <div class=" col-lg-6">
+                 <mat-form-field appearance="outline" class="w-100" color="primary" >
+                     <mat-label>Book</mat-label>
+                     <mat-select formControlName="MemoryVerseBook">
+                        <!-- <ng-container *ngIf="oBook != ''">
+                            <mat-option value="{{oBook}}">{{oBook}}</mat-option>
+                        </ng-container> -->
+                         <mat-option *ngFor="let item of bibleBooks" [value]="item">{{item}}</mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </div>
+             <div class=" col-lg-6">
+                 <mat-form-field appearance="outline" class="w-100" color="primary" >
+                     <mat-label>Chapter</mat-label>
+                     <input matInput  formControlName="MemoryVerseChapter" type="number"/>
+                 </mat-form-field>
+             </div>       
+         </div>
+     
+         <div class="row">
+             <div class=" col-lg-6">
+                 <mat-form-field appearance="outline" class="w-100" color="primary" >
+                     <mat-label>Start Verse</mat-label>
+                     <input matInput formControlName="MemoryVerseStartVerse" type="number"/>
+                 </mat-form-field>
+             </div>
+             <div class=" col-lg-6">
+              <mat-form-field appearance="outline" class="w-100" color="primary" >
+                  <mat-label>End Verse</mat-label>
+                  <input matInput formControlName="MemoryVerseEndVerse"  type="number"/>
+              </mat-form-field>
+             </div>
+         </div>
+    </ng-container>
+
+  
+
+
+      <div class="ion-text-center ion-margin-top ion-padding">
+     
+        <button *ngIf="!isUpdateRequest"  type="submit" [disabled]="newLessonForm.invalid" mat-flat-button  color="primary" [matTooltip]="'Submit '"    aria-label="">
+            Submit
+         </button>
+     
+         <!-- <button *ngIf="isUpdateRequest" mat-flat-button  color="primary" [matTooltip]="'Add '"   (click)="updateLesson()"  aria-label="">
+             Update
+          </button> -->
+      </div>
+      </form>
+
+
+
+ 
+    </mat-card-content>
+  </mat-card>
+  

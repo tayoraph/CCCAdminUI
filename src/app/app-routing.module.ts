@@ -66,6 +66,15 @@ const routes: Routes = [
           canActivate: [authGuard]
 
       },
+      {
+        path: 'SundaySchoolLesson',
+        loadChildren: () =>
+          import('./presentation/pages/Sunday-School/sundaySchool.module').then(
+            (m) => m.SundaySchoolModule
+          ),
+          canActivate: [authGuard]
+
+      },
     ],
   },
  

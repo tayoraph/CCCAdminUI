@@ -47,7 +47,7 @@ export class AddNewLessonsComponent {
   singleBibleLessonById: bible[] = [];
 
   // public currentYear = new Date().getFullYear();
-  public currentYear = "2025";
+  public currentYear = "2026";
   public currentMonth: any="";
   public bibileBooks: Array<string> = bibileBooks
   public typeOfDay = typeOfDay;
