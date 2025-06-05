@@ -1,10 +1,10 @@
 export const environment = {
   production: false,
-  socketIoConfig: { // <1>
-    url: 'localhost:3000', // <2>
+  socketIoConfig: {
+    url: 'localhost:3000',
     options: {}
   },
-  baseUrl: 'https://ccc-backend.adaptable.app/ccc/',
+  baseUrl: 'https://elortechnologies.com/biblelessons/ccc/',
   appVersionDetails: "getAppVersion",
   getAllBibleLessons : "biblelessons",
   getTodaysBibleLessons : "biblelessons/today",
@@ -28,5 +28,10 @@ export const environment = {
   deleteLesson:'biblelessons/',
   updateBibleLesson:"biblelessons/",
 
+  sundaySchoolLessons:{
+    createNewSundaySchoolLesson:"SSC/saveNewSSCLesson",
+    getSundaySchoolLessonForAMonth:"SSC/getSundaySchoolLessonForAMonth",
+    deleteSundaySchoolLesson:"SSC/deleteSundaySchoolLesson/",
+  }
 
 };

@@ -24,7 +24,7 @@ export class SundaySchoolLessonService extends BaseHttpService {
    * @param value 
    * @returns 
    */
-  createNewSundaySchoolLesson(value:sundaySchoolLessonRequest) {
+  createNewSundaySchoolLesson(value:sundaySchoolLessonRequest | any) {
         let con = environment.baseUrl + environment.sundaySchoolLessons.createNewSundaySchoolLesson
         return this.post(con,value)
   }
@@ -39,9 +39,9 @@ export class SundaySchoolLessonService extends BaseHttpService {
   }
 
 
-  deleteLesson(id:string){
-    let con = environment.baseUrl + environment.deleteLesson+ id
-    return this.delete(con)
+  deleteLesson(value:sundaySchoolLessonRequest | any){
+    let con = environment.baseUrl + environment.sundaySchoolLessons.deleteSundaySchoolLesson 
+    return this.post(con, value)
   }
 
   updateLesson(value:any, id:string) {

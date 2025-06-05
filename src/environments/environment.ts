@@ -36,6 +36,7 @@ updateBibleLesson:"biblelessons/",
 sundaySchoolLessons:{
   createNewSundaySchoolLesson:"SSC/saveNewSSCLesson",
   getSundaySchoolLessonForAMonth:"SSC/getSundaySchoolLessonForAMonth",
+  deleteSundaySchoolLesson:"SSC/deleteSundaySchoolLesson/",
   
 }
 
