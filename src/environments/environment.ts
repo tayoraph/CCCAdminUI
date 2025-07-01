@@ -8,8 +8,8 @@ export const environment = {
     url: 'localhost:3000', // <2>
     options: {}
   },
-  baseUrl: 'http://localhost:4000/ccc/',
-  //baseUrl: 'https://ccc-backend.adaptable.app/ccc/',
+  // baseUrl: 'http://localhost:4000/ccc/',
+    baseUrl: 'https://elortechnologies.com/biblelessons/ccc/',
   appVersionDetails: "getAppVersion",
   getAllBibleLessons : "biblelessons",
   getTodaysBibleLessons : "biblelessons/today",

@@ -48,7 +48,7 @@ newSundaySchoolForm(){
         MemoryVerseBook: new FormControl('', Validators.compose([ Validators.required])),
         MemoryVerseChapter: new FormControl('', Validators.compose([ Validators.required])),
         MemoryVerseStartVerse: new FormControl('', Validators.compose([ Validators.required])),
-        MemoryVerseEndVerse: new FormControl('', Validators.compose([ Validators.required]))
+        MemoryVerseEndVerse: new FormControl('', Validators.compose([]))
     });
 }
 

@@ -99,6 +99,12 @@ export class AddNewSundaySchoolLessonComponent {
       let bibleReading = `${value.BibleReadingBook} ${value.BibleReadingChapter}:${value.BibleReadingStartVerse}-${value.BibleReadingEndVerse}`
       this.bibleReadingArray.push(bibleReading)
     }
+    let memoryVerse = 
+      value.MemoryVerseEndVerse !=''?
+        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}-${value.MemoryVerseEndVerse}`:
+      value.MemoryVerseEndVerse != null ?
+        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}-${value.MemoryVerseEndVerse}`:
+        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}`;
     let newLesson: sundaySchoolLessonRequest = {
       SubTheme: value.SubTheme,
       Theme: value.Unit.Theme,
@@ -109,7 +115,7 @@ export class AddNewSundaySchoolLessonComponent {
         BibleReading: this.bibleReadingArray,
         Focus: value.Focus,
         Notes: value.Notes,
-        MemoryVerse: `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}-${value.MemoryVerseEndVerse}`,
+        MemoryVerse: memoryVerse,
         week: value.Week
       },
       reqDetails: {
@@ -132,7 +138,7 @@ export class AddNewSundaySchoolLessonComponent {
     console.log("value", value)
     console.log("req", req)
     let user = this;
-   
+
      return this._sundaySchoolLessonService.createNewSundaySchoolLesson(req)
      .subscribe({
       next(value:any) {
