@@ -42,7 +42,7 @@ newSundaySchoolForm(){
         BibleReadingBook: new FormControl('', Validators.compose([ Validators.required ])),
         BibleReadingChapter: new FormControl('', Validators.compose([ Validators.required ])),
         BibleReadingStartVerse: new FormControl('', Validators.compose([ Validators.required ])),
-        BibleReadingEndVerse: new FormControl('', Validators.compose([ Validators.required ])),
+        BibleReadingEndVerse: new FormControl('', Validators.compose([  ])),
         Focus: new FormControl('', Validators.compose([ Validators.required])),
         Notes: new FormControl('', Validators.compose([ Validators.required ])),
         MemoryVerseBook: new FormControl('', Validators.compose([ Validators.required])),

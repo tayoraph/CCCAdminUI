@@ -52,7 +52,7 @@ export class AddNewSundaySchoolLessonComponent {
   
 
   getDateDayName(day:string, month:string, year:string){
-    // new Date('05 October 2011 14:48 UTC');
+
     let dayValue = day.length > 3 ?day.substring(0, 2) : day.substring(0, 1)
      let currentDate = dayValue + " " + month + " " + year;
      // console.log(currentDate)
@@ -71,8 +71,13 @@ export class AddNewSundaySchoolLessonComponent {
    }
 
   submitBibleReading(){ 
-    let bibleReading = `${ this.newLessonForm.get('BibleReadingBook')?.value} ${this.newLessonForm.get('BibleReadingChapter')?.value}:${this.newLessonForm.get('BibleReadingStartVerse')?.value}-${this.newLessonForm.get('BibleReadingEndVerse')?.value}`
-   this.bibleReadingArray.push(bibleReading);
+      let bibleReading ='';
+    if(this.newLessonForm.get('BibleReadingEndVerse')?.value == '')
+     bibleReading = `${ this.newLessonForm.get('BibleReadingBook')?.value} ${this.newLessonForm.get('BibleReadingChapter')?.value}:${this.newLessonForm.get('BibleReadingStartVerse')?.value}`
+   else 
+      bibleReading = `${ this.newLessonForm.get('BibleReadingBook')?.value} ${this.newLessonForm.get('BibleReadingChapter')?.value}:${this.newLessonForm.get('BibleReadingStartVerse')?.value}-${this.newLessonForm.get('BibleReadingEndVerse')?.value}`
+
+    this.bibleReadingArray.push(bibleReading);
   }
 
   clearBibleReadingInput(){
@@ -91,20 +96,23 @@ export class AddNewSundaySchoolLessonComponent {
 
   mapreq(value:any, typeOfDay:string): sundaySchoolLessonRequest {
     let year = new Date().getFullYear().toString();
-    // let typeOfDay = this.getDateDayName(value.Day, value.Month, year);
-    // if(typeOfDay !== 'Sunday')
-    //   return this.alert.error('The day selected is not a Sunday. Please select a Sunday date.');
 
+ let bibleReading = '';
     if(this.bibleReadingArray.length == 0 ){
-      let bibleReading = `${value.BibleReadingBook} ${value.BibleReadingChapter}:${value.BibleReadingStartVerse}-${value.BibleReadingEndVerse}`
+        if(value.BibleReadingEndVerse !== '' &&  value.BibleReadingEndVerse !== null)
+            bibleReading = `${value.BibleReadingBook} ${value.BibleReadingChapter}:${value.BibleReadingStartVerse}-${value.BibleReadingEndVerse}`
+        else 
+          bibleReading = `${value.BibleReadingBook} ${value.BibleReadingChapter}:${value.BibleReadingStartVerse}`;
+
       this.bibleReadingArray.push(bibleReading)
     }
-    let memoryVerse = 
-      value.MemoryVerseEndVerse !=''?
-        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}-${value.MemoryVerseEndVerse}`:
+    
+    let memoryVerse =  
+      value.MemoryVerseEndVerse ==''?
+        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}`:
       value.MemoryVerseEndVerse != null ?
-        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}-${value.MemoryVerseEndVerse}`:
-        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}`;
+        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}`:
+        `${value.MemoryVerseBook} ${value.MemoryVerseChapter}:${value.MemoryVerseStartVerse}-${value.MemoryVerseEndVerse}`;
     let newLesson: sundaySchoolLessonRequest = {
       SubTheme: value.SubTheme,
       Theme: value.Unit.Theme,
@@ -135,8 +143,6 @@ export class AddNewSundaySchoolLessonComponent {
       return this.alert.error('The day selected is not a Sunday. Please select a Sunday date.');
 
     let req = this.mapreq(value, typeOfDay)
-    console.log("value", value)
-    console.log("req", req)
     let user = this;
 
      return this._sundaySchoolLessonService.createNewSundaySchoolLesson(req)

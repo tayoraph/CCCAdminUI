@@ -145,7 +145,7 @@
             <div class=" col-lg-6">
                 <div class="row" class="" style="float: right !important;">
                        
-                        <button type="button"  mat-flat-button  color="primary" [matTooltip]="'Submit'"  [disabled]="newLessonForm.get('BibleReadingBook')?.value == '' || newLessonForm.get('BibleReadingChapter')?.value == '' || newLessonForm.get('BibleReadingStartVerse')?.value == '' || newLessonForm.get('BibleReadingEndVerse')?.value == ''" (click)="submitBibleReading()" aria-label="">
+                        <button type="button"  mat-flat-button  color="primary" [matTooltip]="'Submit'"  [disabled]="newLessonForm.get('BibleReadingBook')?.value == '' || newLessonForm.get('BibleReadingChapter')?.value == '' || newLessonForm.get('BibleReadingStartVerse')?.value == '' " (click)="submitBibleReading()" aria-label="">
                             Add
                         </button> &nbsp;
                         <button *ngIf="bibleReadingArray.length >= 1" type="button"  mat-flat-button  color="accent" [matTooltip]="'Add Another Bible Reading'"   (click)="clearBibleReadingInput()" aria-label="">
